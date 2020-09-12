@@ -26,7 +26,6 @@ export default function Index() {
             Pokemon List
         </Button>
           <ProTip />
-          <Copyright />
         </Box>
       </Container>
     </Layout>

@@ -14,44 +14,18 @@ export async function getStaticProps() {
   var data = await res.json()
   data = data.results
 
-  var newData = []
-
-  // await data.forEach(element => {
-  //   console.log(element.url)
-  //   axios.get(element.url).then(value => {
-  //     console.log(value.data)
-  //     newData.push(value)
-  //   })
-  // })
-
   return {
     props: {
-      data,
-      // newData
+      data
     },
     // re-build the app every hour if something is changed in the api
     revalidate: 60 * 60,
   }
 }
 
-
-
-export default function Pokemons({ data, newData }) {
+export default function Pokemons({ data }) {
   var title = 'Pokémon List | Pokédex'
   var description = 'List of the Pokémons available'
-
-
-  // var newData = []
-
-  // data.forEach(element => {
-  //   console.log(element.url)
-  //   axios.get(element.url).then(value => {
-  //     console.log(value.data)
-  //     newData.push(value)
-  //   })
-  // })
-
-  console.log(newData)
 
   return (
     <Layout title={title} description={description}>

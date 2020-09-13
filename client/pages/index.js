@@ -8,25 +8,23 @@ import Layout from '../components/Layout/Layout'
 import LayoutIndent from '../components/Layout/LayoutIndent'
 
 export default function Index() {
-  var title = `Home | Pokedex`
-  var description = 'Home page of Pokedex'
+  var title = `Home | Pokédex`
+  var description = 'Home page of Pokédex'
 
   return (
     <Layout title={title} description={description}>
       <LayoutIndent>
-        <Container maxWidth="sm">
-          <Box my={4}>
-            <Typography variant="h4" component="h1" gutterBottom>
-              Welcome to Pokedex!
+        <Box my={4}>
+          <Typography variant="h4" component="h1" gutterBottom>
+            Welcome to Pokédex!
           </Typography>
-            <Typography variant="h5" component="h1" gutterBottom>
-              Log In to get started!
-          </Typography>
-            <Button variant="contained" color="primary" component={Link} naked href="/pokemons">
-              Pokemon List
+          <Typography variant="h5" component="h1" gutterBottom>
+            Log In to get started!
+            </Typography>
+          <Button variant="contained" color="primary" component={Link} naked href="/pokemons">
+            Pokémon List
           </Button>
-          </Box>
-        </Container>
+        </Box>
       </LayoutIndent>
     </Layout>
   )

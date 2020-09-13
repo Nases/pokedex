@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",
+    "axios": "^0.20.0",
     "clsx": "latest",
     "next": "latest",
     "prop-types": "latest",

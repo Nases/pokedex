@@ -1,3 +1,11 @@
 .capitalize {
   text-transform: capitalize;
 }
+
+.flex {
+  display: flex
+}
+
+.ml-auto {
+  margin-left: auto;
+}

@@ -7,6 +7,8 @@ import LayoutIndent from '../components/Layout/LayoutIndent'
 import Grid from '@material-ui/core/Grid'
 import axios from 'axios'
 import Pokemon from '../components/Pokemon'
+import { NotificationContainer } from 'react-notifications'
+
 
 export async function getStaticProps() {
 
@@ -47,6 +49,7 @@ export default function Pokemons({ data }) {
             </Grid>
           </Box>
         </Box>
+        <NotificationContainer />
       </LayoutIndent>
     </Layout>
   )

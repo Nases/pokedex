@@ -8,7 +8,7 @@ import Layout from '../components/Layout/Layout'
 import LayoutIndent from '../components/Layout/LayoutIndent'
 
 export default function Index() {
-  var title = `Home | Pokédex`
+  var title = 'Home | Pokédex'
   var description = 'Home page of Pokédex'
 
   return (

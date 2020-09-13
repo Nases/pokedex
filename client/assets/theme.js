@@ -7,19 +7,10 @@ const theme = createMuiTheme({
     fontSize: 16
   },
   palette: {
-    // primary: {
-    //   main: '#556cd6',
-    // },
-    // secondary: {
-    //   main: '#19857b',
-    // },
-    error: {
-      main: red.A400,
-    },
     background: {
-      default: '#fff',
+      default: '#f7fafc',
     },
   },
-});
+})
 
 export default theme

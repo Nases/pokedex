@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../assets/theme'
 import '../assets/css/main.css'
 import '../assets/css/colors.css'
+import '../assets/css/padding.css'
 import '../node_modules/react-notifications/lib/notifications.css'
 
 

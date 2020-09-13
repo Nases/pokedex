@@ -10,7 +10,8 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
-import { NotificationManager } from 'react-notifications';
+import { NotificationManager } from 'react-notifications'
+import Tooltip from '@material-ui/core/Tooltip'
 
 const useStyles = makeStyles({
   media: {
@@ -37,12 +38,11 @@ const Pokemon = ({ url, name }) => {
     setIsFav(prevState => !prevState)
     name = name.charAt(0).toUpperCase() + name.slice(1)
     if (isFav) {
-      NotificationManager.info(`${name} removed from favorites.`, 'Success', 3000)
+      NotificationManager.info(`${name} removed from favorites.`, null, 3000)
     } else {
-      NotificationManager.success(`${name} added to favorites.`, 'Success', 3000)
+      NotificationManager.success(`${name} added to favorites.`, null, 3000)
     }
   }
-
 
   useEffect(() => {
     axios.get(url).then(value => {
@@ -53,30 +53,9 @@ const Pokemon = ({ url, name }) => {
   if (metaData) {
     var img = metaData.sprites.other.dream_world.front_default
     var id = metaData.id
+    var weight = metaData.weight / 10
+    var height = metaData.height / 10
   }
-
-
-  const createNotification = (type) => {
-    return () => {
-      switch (type) {
-        case 'info':
-          NotificationManager.info('Info message');
-          break;
-        case 'success':
-          NotificationManager.success('Success message', 'Title here');
-          break;
-        case 'warning':
-          NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
-          break;
-        case 'error':
-          NotificationManager.error('Error message', 'Click me!', 5000, () => {
-            alert('callback');
-          });
-          break;
-      }
-    };
-  };
-
 
   return (
     <Grid item xs={3}>
@@ -98,14 +77,26 @@ const Pokemon = ({ url, name }) => {
           </CardContent>
         </CardActionArea>
         <CardActions disableSpacing>
-          <Typography gutterBottom variant="p" align='right' >
+          <Typography variant="p" className='pl-3 text-gray-700'>
             #{id}
           </Typography>
-          <IconButton className={classes.favIcon} onClick={toggleIsFav}>
-            <Typography variant="h5" component="h2" align='right' className='text-red-600 ml-auto'>
-              {isFav ? <i class="fas fa-heart"></i> : <i class="far fa-heart"></i>}
-            </Typography>
-          </IconButton>
+          <Typography variant="p" className='pl-4 text-gray-700'>
+            <i class="fas fa-weight-hanging"></i>
+            {' '}
+            {weight} kg
+          </Typography>
+          <Typography variant="p" className='pl-4 text-gray-700'>
+            <i class="fas fa-ruler-vertical"></i>
+            {' '}
+            {height} m
+          </Typography>
+          <Tooltip title={isFav ? 'Remove from Favorites' : 'Add to Favorites'}>
+            <IconButton className={classes.favIcon} onClick={toggleIsFav}>
+              <Typography variant="h5" component="h2" align='right' className='text-red-600 ml-auto'>
+                {isFav ? <i class="fas fa-heart"></i> : <i class="far fa-heart"></i>}
+              </Typography>
+            </IconButton>
+          </Tooltip>
         </CardActions>
       </Card>
     </Grid>

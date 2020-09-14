@@ -39,7 +39,12 @@ export default function ButtonAppBar() {
           </Grid>
           <Grid item xs={6}>
             <Typography align='right'>
-              <Button color="inherit">Login</Button>
+              <Link href="/login">
+                <Button color="inherit"><a>Log In</a></Button>
+              </Link>
+              <Link href="/signup">
+                <Button color="inherit"><a>Sign Up</a></Button>
+              </Link>
             </Typography>
           </Grid>
         </Grid>

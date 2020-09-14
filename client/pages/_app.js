@@ -9,6 +9,7 @@ import '../assets/css/colors.css'
 import '../assets/css/padding.css'
 import '../assets/css/margin.css'
 import '../node_modules/react-notifications/lib/notifications.css'
+import { UserProvider } from '../contexts/UserProvider/UserProvider'
 
 
 export default function MyApp(props) {
@@ -23,7 +24,7 @@ export default function MyApp(props) {
   }, [])
 
   return (
-    <React.Fragment>
+    <UserProvider>
       <Head>
         <title>My page</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
@@ -32,7 +33,7 @@ export default function MyApp(props) {
         <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
-    </React.Fragment>
+    </UserProvider>
   )
 }
 

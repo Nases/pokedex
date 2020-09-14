@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
-import Link from '../components/Link'
+import Link from 'next/link'
 import Layout from '../components/Layout/Layout'
 import LayoutIndent from '../components/Layout/LayoutIndent'
 import Grid from '@material-ui/core/Grid'
@@ -61,7 +61,7 @@ export default function Pokemons({ data }) {
             <Tooltip title={howManyInOneRow == 4 ? 'Show 4 Pokémons in one row' : 'Show 3 Pokémons in one row'} placement="right">
               <IconButton onClick={toggleHowManyInOneRow}>
                 <span className='cursor-pointer underline-on-hover font-bold'>
-                  {howManyInOneRow == 4 ? '||||' : '|||'}
+                  {howManyInOneRow == 4 ? '|||' : '||||'}
                 </span>
               </IconButton>
             </Tooltip>

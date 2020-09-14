@@ -26,7 +26,9 @@ export default function Layout({ children, title, description }) {
       {/* <Header /> */}
       <div className={classes.root}>
         <Header />
-        {children}
+        <div className='min-h-screen'>
+          {children}
+        </div>
         <Footer />
       </div>
       {/* </EnsureNotLoading> */}

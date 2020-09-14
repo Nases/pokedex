@@ -1,3 +1,7 @@
+.min-h-screen {
+  min-height: 86vh
+}
+
 .capitalize {
   text-transform: capitalize
 }
@@ -20,6 +24,10 @@
 
 .underline-on-hover:hover {
   text-decoration: underline
+}
+
+.no-underline {
+  text-decoration: none;
 }
 
 .font-bold {

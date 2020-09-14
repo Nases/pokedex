@@ -10,3 +10,7 @@
 .ml-auto {
   margin-left: auto;
 }
+
+.cursor-pointer {
+  cursor: pointer
+}

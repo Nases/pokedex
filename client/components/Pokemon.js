@@ -33,6 +33,10 @@ const Pokemon = ({ url, name }) => {
 
   const [metaData, setMetaData] = useState()
   const [isFav, setIsFav] = useState(false)
+  const [weight, setWeight] = useState()
+  const [weightCoverted, setWeightConverted] = useState(false)
+  const [height, setHeight] = useState()
+  const [heightCoverted, setHeightConverted] = useState(false)
 
   const toggleIsFav = () => {
     setIsFav(prevState => !prevState)
@@ -46,16 +50,42 @@ const Pokemon = ({ url, name }) => {
 
   useEffect(() => {
     axios.get(url).then(value => {
-      setMetaData(value.data)
+      var data = value.data
+      setMetaData(data)
+      setWeight(data.weight / 10)
+      setHeight(data.height / 10)
     })
   }, [])
+
+  function setTwoNumberDecimal(el) {
+    return el = parseFloat(el).toFixed(1);
+  }
+
+  const convertWeight = () => {
+    if (!weightCoverted) {
+      setWeight(prevState => setTwoNumberDecimal(prevState * 2.205))
+    } else {
+      setWeight(prevState => setTwoNumberDecimal(prevState / 2.205))
+    }
+    setWeightConverted(prevState => !prevState)
+  }
+
+  const convertHeight = () => {
+    if (!heightCoverted) {
+      setHeight(prevState => setTwoNumberDecimal(prevState * 3.281))
+    } else {
+      setHeight(prevState => setTwoNumberDecimal(prevState / 3.281))
+    }
+    setHeightConverted(prevState => !prevState)
+  }
+
 
   if (metaData) {
     var img = metaData.sprites.other.dream_world.front_default
     var id = metaData.id
-    var weight = metaData.weight / 10
-    var height = metaData.height / 10
   }
+
+
 
   return (
     <Grid item xs={3}>
@@ -80,17 +110,21 @@ const Pokemon = ({ url, name }) => {
           <Typography variant="p" className='pl-3 text-gray-700'>
             #{id}
           </Typography>
-          <Typography variant="p" className='pl-4 text-gray-700'>
-            <i class="fas fa-weight-hanging"></i>
-            {' '}
-            {weight} kg
-          </Typography>
-          <Typography variant="p" className='pl-4 text-gray-700'>
-            <i class="fas fa-ruler-vertical"></i>
-            {' '}
-            {height} m
-          </Typography>
-          <Tooltip title={isFav ? 'Remove from Favorites' : 'Add to Favorites'}>
+          <Tooltip title={weightCoverted ? 'Convert to kg' : 'Convert to lb'} placement="right" className='cursor-pointer'>
+            <Typography onClick={convertWeight} variant="p" className='pl-4 text-gray-700'>
+              <i class="fas fa-weight-hanging"></i>
+              {' '}
+              {`${weight} ${weightCoverted ? 'lb' : 'kg'}`}
+            </Typography>
+          </Tooltip>
+          <Tooltip title={heightCoverted ? 'Convert to m' : 'Convert to ft'} placement="right" className='cursor-pointer'>
+            <Typography onClick={convertHeight} variant="p" className='pl-4 text-gray-700'>
+              <i class="fas fa-ruler-vertical"></i>
+              {' '}
+              {`${height} ${heightCoverted ? 'ft' : 'm'}`}
+            </Typography>
+          </Tooltip>
+          <Tooltip title={isFav ? 'Remove from Favorites' : 'Add to Favorites'} placement="right">
             <IconButton className={classes.favIcon} onClick={toggleIsFav}>
               <Typography variant="h5" component="h2" align='right' className='text-red-600 ml-auto'>
                 {isFav ? <i class="fas fa-heart"></i> : <i class="far fa-heart"></i>}

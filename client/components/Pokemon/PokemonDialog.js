@@ -14,7 +14,13 @@ export default function SimpleDialog({ onClose, open, metaData, characteristics 
   if (metaData) {
     var img = metaData.sprites.other.dream_world.front_default
     var name = metaData.name.charAt(0).toUpperCase() + metaData.name.slice(1)
+    var type1 = metaData.types[0].type.name
+    if (metaData.types[1]) {
+      var type2 = metaData.types[1].type.name
+    }
   }
+
+  console.log(type2)
 
   if (characteristics) {
     var description = characteristics.descriptions[2].description
@@ -31,6 +37,15 @@ export default function SimpleDialog({ onClose, open, metaData, characteristics 
         <Typography variant="body2" color="textSecondary" component="p" align='center'>
           {description}
         </Typography>
+        <img src={`/img/pokemon_types/${type1}.png `} alt={type1} />
+        {type2 ? <img src={`/img/pokemon_types/${type2}.png `} alt={type2} /> : ''}
+
+
+        {/* 
+        <Typography variant="body2" color="textSecondary" component="p" align='center'>
+          {type1}
+          {type2}
+        </Typography> */}
       </DialogTitle>
     </Dialog>
   )

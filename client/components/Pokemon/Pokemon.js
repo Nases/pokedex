@@ -106,6 +106,7 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
 
   return (
     <Grid item xs={howManyInOneRow}>
+
       <Card className={classes.root}>
         <PokemonDialog open={dialogIsOpen} onClose={closeDialog} metaData={metaData} characteristics={characteristics} />
         <CardActionArea onClick={openDialog}>
@@ -120,19 +121,19 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
           </CardContent>
         </CardActionArea>
         <CardActions disableSpacing>
-          <Typography variant="p" className='pl-3 text-gray-700'>
+          <Typography className='pl-3 text-gray-700'>
             #{id}
           </Typography>
           <Tooltip title={weightCoverted ? 'Convert to kg' : 'Convert to lb'} placement="right" className='cursor-pointer'>
-            <Typography onClick={convertWeight} variant="p" className='pl-4 text-gray-700'>
-              <i class="fas fa-weight-hanging"></i>
+            <Typography onClick={convertWeight} className='pl-4 text-gray-700'>
+              <i aria-hidden className="fas fa-weight-hanging"></i>
               {' '}
               {`${weight} ${weightCoverted ? 'lb' : 'kg'}`}
             </Typography>
           </Tooltip>
           <Tooltip title={heightCoverted ? 'Convert to m' : 'Convert to ft'} placement="right" className='cursor-pointer'>
-            <Typography onClick={convertHeight} variant="p" className='pl-4 text-gray-700'>
-              <i class="fas fa-ruler-vertical"></i>
+            <Typography onClick={convertHeight} className='pl-4 text-gray-700'>
+              <i aria-hidden className="fas fa-ruler-vertical"></i>
               {' '}
               {`${height} ${heightCoverted ? 'ft' : 'm'}`}
             </Typography>
@@ -140,7 +141,7 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
           <Tooltip title={isFav ? 'Remove from Favorites' : 'Add to Favorites'} placement="right">
             <IconButton className={classes.favIcon} onClick={toggleIsFav}>
               <Typography variant="h5" component="h2" align='right' className='text-red-600 ml-auto'>
-                {isFav ? <i class="fas fa-heart"></i> : <i class="far fa-heart"></i>}
+                {isFav ? <i className="fas fa-heart" aria-hidden></i> : <i className="far fa-heart" aria-hidden></i>}
               </Typography>
             </IconButton>
           </Tooltip>

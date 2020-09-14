@@ -71,7 +71,7 @@ export default function Pokemons({ data }) {
             <Grid container spacing={3}>
               {data.map(value => {
                 return (
-                  <Pokemon name={value.name} url={value.url} howManyInOneRow={howManyInOneRow} />
+                  <Pokemon name={value.name} url={value.url} howManyInOneRow={howManyInOneRow} key={value.name} />
                 )
               })}
             </Grid>

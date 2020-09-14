@@ -33,7 +33,7 @@ export default function PokemonDialog({ onClose, open, metaData, characteristics
     <>
       {metaData ?
         <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open}>
-          <DialogTitle id="simple-dialog-title">
+          <div className='my-6 px-10'>
             <img src={img} alt={name} height='250' className='block m-auto mb-4' />
             <Typography gutterBottom variant="h5" component="h2" align='center' className='capitalize' className={classes.title}>
               {name}
@@ -41,7 +41,7 @@ export default function PokemonDialog({ onClose, open, metaData, characteristics
             <Typography variant="body2" color="textSecondary" component="p" align='center'>
               {description}
             </Typography>
-          </DialogTitle>
+          </div>
           <DialogContent className='mb-6'>
             <Grid container spacing={3}>
               <Grid item xs={6}>

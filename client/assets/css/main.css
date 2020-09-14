@@ -1,6 +1,5 @@
-
 .capitalize {
-  text-transform: capitalize;
+  text-transform: capitalize
 }
 
 .flex {
@@ -8,9 +7,17 @@
 }
 
 .ml-auto {
-  margin-left: auto;
+  margin-left: auto
 }
 
 .cursor-pointer {
   cursor: pointer
+}
+
+.underline-on-hover:hover {
+  text-decoration: underline
+}
+
+.font-bold {
+  font-weight: 700
 }

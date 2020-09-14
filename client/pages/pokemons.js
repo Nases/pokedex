@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
@@ -5,10 +6,15 @@ import Link from '../components/Link'
 import Layout from '../components/Layout/Layout'
 import LayoutIndent from '../components/Layout/LayoutIndent'
 import Grid from '@material-ui/core/Grid'
-import axios from 'axios'
 import Pokemon from '../components/Pokemon'
 import { NotificationContainer } from 'react-notifications'
+import { makeStyles } from '@material-ui/core/styles'
+import IconButton from '@material-ui/core/IconButton'
+import Tooltip from '@material-ui/core/Tooltip'
 
+
+const useStyles = makeStyles({
+})
 
 export async function getStaticProps() {
 
@@ -29,6 +35,21 @@ export default function Pokemons({ data }) {
   var title = 'Pokémon List | Pokédex'
   var description = 'List of the Pokémons available'
 
+  const classes = useStyles()
+
+  const [howManyInOneRow, setHowManyInOneRow] = useState(4)
+
+  const toggleHowManyInOneRow = () => {
+    setHowManyInOneRow(prevState => {
+      if (prevState === 4) {
+        return 3
+      } else {
+        return 4
+      }
+    })
+  }
+
+
   return (
     <Layout title={title} description={description}>
       <LayoutIndent>
@@ -38,12 +59,21 @@ export default function Pokemons({ data }) {
             </Typography>
           <Button variant="contained" color="primary" component={Link} naked href="/">
             Go to the main page
-            </Button>
+          </Button>
+          <div className='mt-8'>
+            <Tooltip title={howManyInOneRow == 4 ? 'Show 4 Pokémons in one row' : 'Show 3 Pokémons in one row'} placement="right">
+              <IconButton onClick={toggleHowManyInOneRow}>
+                <span className='cursor-pointer underline-on-hover font-bold'>
+                  {howManyInOneRow == 4 ? '||||' : '|||'}
+                </span>
+              </IconButton>
+            </Tooltip>
+          </div>
           <Box my={4}>
             <Grid container spacing={3}>
               {data.map(value => {
                 return (
-                  <Pokemon name={value.name} url={value.url} />
+                  <Pokemon name={value.name} url={value.url} howManyInOneRow={howManyInOneRow} />
                 )
               })}
             </Grid>

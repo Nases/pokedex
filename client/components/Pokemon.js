@@ -7,7 +7,6 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
-import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import { NotificationManager } from 'react-notifications'
@@ -20,15 +19,15 @@ const useStyles = makeStyles({
     // maxWidth: '80%',
     // maxHeight: '80%',
     // height: 'auto',
-    margin: 'auto',
+    margin: 'auto'
   },
   favIcon: {
     marginLeft: 'auto'
   }
-});
+})
 
 
-const Pokemon = ({ url, name }) => {
+const Pokemon = ({ url, name, howManyInOneRow }) => {
   const classes = useStyles()
 
   const [metaData, setMetaData] = useState()
@@ -57,8 +56,8 @@ const Pokemon = ({ url, name }) => {
     })
   }, [])
 
-  function setTwoNumberDecimal(el) {
-    return el = parseFloat(el).toFixed(1);
+  const setTwoNumberDecimal = input => {
+    return input = parseFloat(input).toFixed(1)
   }
 
   const convertWeight = () => {
@@ -79,16 +78,14 @@ const Pokemon = ({ url, name }) => {
     setHeightConverted(prevState => !prevState)
   }
 
-
   if (metaData) {
     var img = metaData.sprites.other.dream_world.front_default
     var id = metaData.id
   }
 
 
-
   return (
-    <Grid item xs={3}>
+    <Grid item xs={howManyInOneRow}>
       <Card className={classes.root}>
         <CardActionArea onClick={() => console.log('helluu')}>
           <CardMedia

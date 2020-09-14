@@ -1,5 +1,5 @@
 import LinearProgress from '@material-ui/core/LinearProgress'
-import { makeStyles, withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 
 // blend two hex colors together with an amount
 const blendColors = (colorA, colorB, amount) => {
@@ -11,12 +11,7 @@ const blendColors = (colorA, colorB, amount) => {
   return '#' + r + g + b
 }
 
-console.log(blendColors('#FF0000', '#00FF66', 0.5));
-
-
-
 const ProgresBar = ({ value }) => {
-
   const BorderLinearProgress = withStyles((theme) => ({
     root: {
       height: 10,
@@ -30,9 +25,9 @@ const ProgresBar = ({ value }) => {
       backgroundColor: blendColors('#FF0000', '#00FF66', value / 100),
     },
   }))(LinearProgress)
-
-
-  return (<BorderLinearProgress variant="determinate" value={value} />)
+  return (
+    <BorderLinearProgress variant="determinate" value={value} />
+  )
 }
 
 export default ProgresBar

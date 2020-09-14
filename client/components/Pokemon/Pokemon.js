@@ -12,6 +12,8 @@ import IconButton from '@material-ui/core/IconButton'
 import { NotificationManager } from 'react-notifications'
 import Tooltip from '@material-ui/core/Tooltip'
 
+import PokemonDialog from './PokemonDialog'
+
 const useStyles = makeStyles({
   media: {
     height: 200,
@@ -37,10 +39,20 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
   const [weightCoverted, setWeightConverted] = useState(false)
   const [height, setHeight] = useState()
   const [heightCoverted, setHeightConverted] = useState(false)
+  const [dialogIsOpen, setDialogIsOpen] = useState(false)
+
+  // capitalize name
+  name = name.charAt(0).toUpperCase() + name.slice(1)
+
+  const openDialog = () => {
+    setDialogIsOpen(true)
+  }
+  const closeDialog = () => {
+    setDialogIsOpen(false)
+  }
 
   const toggleIsFav = () => {
     setIsFav(prevState => !prevState)
-    name = name.charAt(0).toUpperCase() + name.slice(1)
     if (isFav) {
       NotificationManager.info(`${name} removed from favorites.`, null, 3000)
     } else {
@@ -95,11 +107,12 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
   return (
     <Grid item xs={howManyInOneRow}>
       <Card className={classes.root}>
-        <CardActionArea onClick={() => console.log('helluu')}>
+        <PokemonDialog open={dialogIsOpen} onClose={closeDialog} metaData={metaData} characteristics={characteristics} />
+        <CardActionArea onClick={openDialog}>
           <CardMedia
             className={classes.media}
             image={img}
-            title="Contemplative Reptile"
+            title={name}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2" align='center' className='capitalize'>

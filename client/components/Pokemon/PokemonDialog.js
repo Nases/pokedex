@@ -6,12 +6,25 @@ import Dialog from '@material-ui/core/Dialog'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import LinearProgress from '@material-ui/core/LinearProgress'
+import ProgressBar from './ProgressBar'
 
 const useStyles = makeStyles({
   title: {
     width: 500
   }
 })
+
+// blend two hex colors together with an amount
+const blendColors = (colorA, colorB, amount) => {
+  const [rA, gA, bA] = colorA.match(/\w\w/g).map((c) => parseInt(c, 16))
+  const [rB, gB, bB] = colorB.match(/\w\w/g).map((c) => parseInt(c, 16))
+  const r = Math.round(rA + (rB - rA) * amount).toString(16).padStart(2, '0')
+  const g = Math.round(gA + (gB - gA) * amount).toString(16).padStart(2, '0')
+  const b = Math.round(bA + (bB - bA) * amount).toString(16).padStart(2, '0')
+  return '#' + r + g + b
+}
+
+console.log(blendColors('#FF0000', '#00FF66', 0.5));
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -77,30 +90,34 @@ export default function PokemonDialog({ onClose, open, metaData, characteristics
           <Typography variant="body2" color="textPrimary" component="h5" align='center' className='capitalize'>
             Stats
         </Typography>
-          <div>
-            HP
-        <BorderLinearProgress variant="determinate" value={50} />
-          </div>
-          <div>
-            Attack
-        <BorderLinearProgress variant="determinate" value={50} />
-          </div>
-          <div>
-            Defense
-        <BorderLinearProgress variant="determinate" value={50} />
-          </div>
-          <div>
-            Speed
-        <BorderLinearProgress variant="determinate" value={50} />
-          </div>
-          <div>
-            Sp Atk
-        <BorderLinearProgress variant="determinate" value={50} />
-          </div>
-          <div>
-            Sp Def
-        <BorderLinearProgress variant="determinate" value={50} />
-          </div>
+          {metaData ?
+            <div>
+              <div className='mt-1'>
+                HP ({metaData.stats[0].base_stat} / 150)
+                <ProgressBar value={metaData.stats[0].base_stat / 1.5} />
+              </div>
+              <div className='mt-1'>
+                Attack ({metaData.stats[1].base_stat} / 150)
+                <ProgressBar value={metaData.stats[1].base_stat / 1.5} />
+              </div>
+              <div className='mt-1'>
+                Defense ({metaData.stats[2].base_stat} / 150)
+                <ProgressBar value={metaData.stats[2].base_stat / 1.5} />
+              </div>
+              <div className='mt-1'>
+                Speed ({metaData.stats[5].base_stat} / 150)
+                <ProgressBar value={metaData.stats[5].base_stat / 1.5} />
+              </div>
+              <div className='mt-1'>
+                Special Attack ({metaData.stats[3].base_stat} / 150)
+                <ProgressBar value={metaData.stats[3].base_stat / 1.5} />
+              </div>
+              <div className='mt-1'>
+                Special Defense ({metaData.stats[4].base_stat} / 150)
+                <ProgressBar value={metaData.stats[4].base_stat / 1.5} />
+              </div>
+            </div>
+            : ''}
         </div>
       </DialogContent>
     </Dialog>

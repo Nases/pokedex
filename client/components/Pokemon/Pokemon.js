@@ -109,11 +109,7 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
       <Card className={classes.root}>
         <PokemonDialog open={dialogIsOpen} onClose={closeDialog} metaData={metaData} characteristics={characteristics} />
         <CardActionArea onClick={openDialog}>
-          <CardMedia
-            className={classes.media}
-            image={img}
-            title={name}
-          />
+          <img src={img} alt={name} height='250' className='m-auto block p-6' />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2" align='center' className='capitalize'>
               {name}

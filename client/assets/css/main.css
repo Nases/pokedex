@@ -6,6 +6,10 @@
   display: flex
 }
 
+.block {
+  display: block
+}
+
 .ml-auto {
   margin-left: auto
 }
@@ -22,6 +26,6 @@
   font-weight: 700
 }
 
-.block {
-  display: block
+.text-center {
+  text-align: center;
 }

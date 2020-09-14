@@ -31,6 +31,7 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
   const classes = useStyles()
 
   const [metaData, setMetaData] = useState()
+  const [characteristics, setCharacteristics] = useState()
   const [isFav, setIsFav] = useState(false)
   const [weight, setWeight] = useState()
   const [weightCoverted, setWeightConverted] = useState(false)
@@ -53,8 +54,20 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
       setMetaData(data)
       setWeight(data.weight / 10)
       setHeight(data.height / 10)
+      axios.get(`https://pokeapi.co/api/v2/characteristic/${data.id}/`).then(value => {
+        setCharacteristics(value.data)
+      })
     })
   }, [])
+
+  if (metaData) {
+    var img = metaData.sprites.other.dream_world.front_default
+    var id = metaData.id
+  }
+
+  if (characteristics) {
+    var description = characteristics.descriptions[2].description
+  }
 
   const setTwoNumberDecimal = input => {
     return input = parseFloat(input).toFixed(1)
@@ -78,11 +91,6 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
     setHeightConverted(prevState => !prevState)
   }
 
-  if (metaData) {
-    var img = metaData.sprites.other.dream_world.front_default
-    var id = metaData.id
-  }
-
 
   return (
     <Grid item xs={howManyInOneRow}>
@@ -97,9 +105,8 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
             <Typography gutterBottom variant="h5" component="h2" align='center' className='capitalize'>
               {name}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-              across all continents except Antarctica
+            <Typography variant="body2" color="textSecondary" component="p" align='center'>
+              {description}
             </Typography>
           </CardContent>
         </CardActionArea>

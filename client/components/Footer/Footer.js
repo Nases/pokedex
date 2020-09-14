@@ -8,12 +8,6 @@ import MuiLink from '@material-ui/core/Link'
 const useStyles = makeStyles(theme => ({
   footer: {
     backgroundColor: 'teal'
-  },
-  heartIcon: {
-
-  },
-  coffeeIcon: {
-
   }
 }))
 

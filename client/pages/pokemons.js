@@ -54,13 +54,10 @@ export default function Pokemons({ data }) {
     <Layout title={title} description={description}>
       <LayoutIndent>
         <Box my={4}>
-          <Typography variant="h4" component="h1" gutterBottom>
+          <Typography variant="h4" component="h1" align='center'>
             Pokémon List
-            </Typography>
-          <Button variant="contained" color="primary" component={Link} naked href="/">
-            Go to the main page
-          </Button>
-          <div className='mt-8'>
+          </Typography>
+          <div className='mt-4'>
             <Tooltip title={howManyInOneRow == 4 ? 'Show 4 Pokémons in one row' : 'Show 3 Pokémons in one row'} placement="right">
               <IconButton onClick={toggleHowManyInOneRow}>
                 <span className='cursor-pointer underline-on-hover font-bold'>
@@ -69,6 +66,7 @@ export default function Pokemons({ data }) {
               </IconButton>
             </Tooltip>
           </div>
+          <hr />
           <Box my={4}>
             <Grid container spacing={3}>
               {data.map(value => {

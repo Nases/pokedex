@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -24,6 +25,7 @@ export default function Layout({ children, title, description }) {
       </Head>
       {/* <Header /> */}
       <div className={classes.root}>
+        <Header />
         {children}
         <Footer />
       </div>

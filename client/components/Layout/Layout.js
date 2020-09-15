@@ -2,10 +2,8 @@ import Head from 'next/head'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import { makeStyles } from '@material-ui/core/styles'
+import EnsureNotLoading from '../utils/EnsureNotLoading'
 
-
-// import Header from '../partials/Header/Header'
-// import EnsureNotLoading from '../utils/EnsureNotLoading'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,20 +16,19 @@ export default function Layout({ children, title, description }) {
 
   return (
     <>
-      {/* <EnsureNotLoading> */}
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Head>
-      {/* <Header /> */}
-      <div className={classes.root}>
-        <Header />
-        <div className='min-h-screen'>
-          {children}
+      <EnsureNotLoading>
+        <Head>
+          <title>{title}</title>
+          <meta name="description" content={description} />
+        </Head>
+        <div className={classes.root}>
+          <Header />
+          <div className='min-h-screen'>
+            {children}
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-      {/* </EnsureNotLoading> */}
+      </EnsureNotLoading>
     </>
   )
 }

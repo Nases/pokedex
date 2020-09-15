@@ -11,6 +11,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import EnsureAuth from '../components/utils/EnsureAuth'
 import axios from 'axios'
 import InfiniteScroll from "react-infinite-scroll-component"
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 export default function Pokemons() {
@@ -33,6 +34,14 @@ export default function Pokemons() {
     })
   }
 
+  const LoadingMore = () => {
+    return (
+      <div className='my-16 text-center'>
+        <CircularProgress />
+      </div>
+    )
+  }
+
   useEffect(() => {
     axios.get('https://pokeapi.co/api/v2/pokemon').then(value => {
       setData(value.data.results)
@@ -49,8 +58,7 @@ export default function Pokemons() {
         })
         setNextPokemonsURL(value.data.next)
       })
-    }, 500)
-
+    }, 1000)
   }
 
   return (
@@ -78,14 +86,15 @@ export default function Pokemons() {
               </Tooltip>
             </div>
             <hr />
-            <InfiniteScroll
-              dataLength={data.length}
-              next={getNewPokemons}
-              hasMore={true}
-              loader={<h4><i aria-hidden className="fas fa-spinner fa-2x fa-spin"></i> Loading...</h4>}
-              scrollThreshold={1}
-            >
-              <Box my={4}>
+            <Box my={4}>
+              <InfiniteScroll
+                dataLength={data.length}
+                next={getNewPokemons}
+                hasMore={true}
+                loader={<LoadingMore />}
+                scrollThreshold={1}
+                style={{ overflow: 'visible' }}
+              >
                 <Grid container spacing={3}>
                   {data.map(value => {
                     return (
@@ -93,8 +102,8 @@ export default function Pokemons() {
                     )
                   })}
                 </Grid>
-              </Box>
-            </InfiniteScroll>
+              </InfiniteScroll>
+            </Box>
           </Box>
           <NotificationContainer />
         </LayoutIndent>

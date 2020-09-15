@@ -64,11 +64,29 @@
 .align-bottom	{vertical-align: bottom;}
 .align-text-top	{vertical-align: text-top;}
 .align-text-bottom	{vertical-align: text-bottom;}
+.items-start	{align-items: flex-start;}
+.items-end	{align-items: flex-end;}
+.items-center	{align-items: center;}
+.items-baseline	{align-items: baseline;}
+.items-stretch	{align-items: stretch;}
 .opacity-0	{opacity: 0;}
 .opacity-25	{opacity: 0.25;}
 .opacity-50	{opacity: 0.5;}
 .opacity-75	{opacity: 0.75;}
 .opacity-100	{opacity: 1;}
+.text-xs	{font-size: 0.75rem;}
+.text-sm	{font-size: 0.875rem;}
+.text-base	{font-size: 1rem;}
+.text-lg	{font-size: 1.125rem;}
+.text-xl	{font-size: 1.25rem;}
+.text-2xl	{font-size: 1.5rem;}
+.text-3xl	{font-size: 1.875rem;}
+.text-4xl	{font-size: 2.25rem;}
+.text-5xl	{font-size: 3rem;}
+.text-6xl	{font-size: 4rem;}
+.overflow-auto	{overflow: auto;}
+.overflow-hidden	{overflow: hidden;}
+.overflow-visible	{overflow: visible;}
 
 @media (max-width: 640px) { 
   .mobile-hidden {

@@ -4,6 +4,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import IconButton from '@material-ui/core/IconButton'
 import { makeStyles } from '@material-ui/core/styles'
 import { NotificationManager } from 'react-notifications'
+import { useUser, useDispatchUser } from '../../contexts/UserProvider/UserProvider'
 
 
 const useStyles = makeStyles({
@@ -20,14 +21,32 @@ const useStyles = makeStyles({
 const FavoritePokemon = ({ id, name }) => {
   const classes = useStyles()
   const [isFav, setIsFav] = useState(false)
+  const user = useUser()
+  const userDispatch = useDispatchUser()
 
+  console.log(user)
 
   const toggleIsFav = () => {
     setIsFav(prevState => !prevState)
     if (isFav) {
+      const index = user.data.favoritePokemons.indexOf(id)
+      if (index > -1) {
+        user.data.favoritePokemons.splice(index, 1)
+        var newFavoritePokemons = user.data.favoritePokemons
+      }
+      userDispatch({
+        type: 'UPDATE_FAVORITE_POKEMONS',
+        favoritePokemons: newFavoritePokemons
+      })
       NotificationManager.info(`${name} removed from favorites.`, null, 3000)
     } else {
       NotificationManager.success(`${name} added to favorites.`, null, 3000)
+      user.data.favoritePokemons.push(id)
+      var newFavoritePokemons = user.data.favoritePokemons
+      userDispatch({
+        type: 'UPDATE_FAVORITE_POKEMONS',
+        favoritePokemons: newFavoritePokemons
+      })
     }
   }
 

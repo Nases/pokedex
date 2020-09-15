@@ -9,32 +9,12 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  firstName: {
-    type: String,
-    default: null
-  },
-  lastName: {
-    type: String,
-    default: null
-  },
-  address: {
-    type: String,
-    default: null
-  },
-  lastPasswordUpdate: {
-    type: Date
+  favoritePokemons: {
+    type: Array
   },
   registrationDate: {
     type: Date,
     default: Date.now
-  },
-  passwordLastUpdated: {
-    type: Date,
-    default: Date.now
-  },
-  forgotPasswordToken: {
-    type: String,
-    default: null
   }
 })
 

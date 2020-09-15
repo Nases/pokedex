@@ -120,6 +120,20 @@ export default function PokemonDialog({ onClose, open, metaData, characteristics
                 </ul>
               </div>
             </div>
+            <div className='pt-4'>
+              <Typography variant="body2" color="textPrimary" component="h5" align='center' className='capitalize'>
+                Moves
+              </Typography>
+              <div>
+                <ul>
+                  {metaData.moves.map(value => {
+                    return (
+                      <li className='capitalize' key={value.move.name}>{value.move.name}</li>
+                    )
+                  })}
+                </ul>
+              </div>
+            </div>
           </DialogContent>
         </Dialog>
         : ''}

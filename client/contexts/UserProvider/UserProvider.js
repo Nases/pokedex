@@ -15,18 +15,8 @@ const reducer = (state, action) => {
       state.isLoading = false
       state.data = {}
       return { ...state }
-    case 'UPDATE':
-      state.data = action.userData
-      return { ...state }
-    case 'UPDATE_EMAIL':
-      state.data.email = action.email
-      return { ...state }
-    case 'UPDATE_PERSONAL_INFORMATION':
-      state.data.firstName = action.firstName
-      state.data.lastName = action.lastName
-      return { ...state }
-    case 'UPDATE_PASSWORD_LAST_UPDATED':
-      state.data.passwordLastUpdated = action.passwordLastUpdated
+    case 'UPDATE_FAVORITE_POKEMONS':
+      state.data.favoritePokemons = action.favoritePokemons
       return { ...state }
     case 'SET_IS_LOADING_FALSE':
       state.isLoading = false
@@ -43,11 +33,8 @@ export const UserProvider = ({ children }) => {
     data: {
       id: '',
       email: '',
-      firstName: '',
-      lastName: '',
-      phoneNumber: '',
       password: '',
-      passwordLastUpdated: ''
+      favoritePokemons: []
     }
   })
   return (

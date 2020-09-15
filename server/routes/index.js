@@ -376,25 +376,10 @@ router.post('/ensure-forgot-password-change-password', (req, res) => {
     })
 })
 
-
-// router.get('/test', (req, res, next) => {
-//   passport.authenticate('facebook')
-//   res.send('helluuu')
-// })
-
 router.get('/test', (req, res) => {
   console.log('eyyy')
   res.send('yoo')
 })
-
-router.get('/callback', (req, res) => passport.authenticate('facebook', {
-  successRedirect: '/success',
-  failureRedirect: '/fail'
-}))
-
-
-
-
 
 
 

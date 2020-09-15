@@ -1,6 +1,6 @@
 .text-transparent	{ color: transparent }	
 .text-black	{ color: #000 }	
-.text-white	{ color: #fff }	
+.text-white	{ color: #fff !important}	
 .text-gray-100	{ color: #f7fafc }	
 .text-gray-200	{ color: #edf2f7 }	
 .text-gray-300	{ color: #e2e8f0 }	

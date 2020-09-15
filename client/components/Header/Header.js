@@ -7,6 +7,7 @@ import LayoutIndent from '../Layout/LayoutIndent'
 import Grid from '@material-ui/core/Grid'
 import { useUser, useDispatchUser } from '../../contexts/UserProvider/UserProvider'
 import Tooltip from '@material-ui/core/Tooltip'
+import UserDropdown from './UserDropdown'
 
 
 
@@ -48,7 +49,7 @@ export default function ButtonAppBar() {
                   <Typography variant="p">
                     <a>
                       Pokémon List
-                  </a>
+                    </a>
                   </Typography>
                 </Link>
               </div>
@@ -58,9 +59,7 @@ export default function ButtonAppBar() {
             <Typography align='right'>
               {
                 isAuth ?
-                  <span>
-                    {user.data.email}
-                  </span>
+                  <UserDropdown />
                   :
                   <>
                     <Link href="/login">

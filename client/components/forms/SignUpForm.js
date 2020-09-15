@@ -1,29 +1,16 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import Input from './partials/Input'
-import Label from './partials/Label'
-// import Button from '../Button/Button'
 import FormErrorMessage from './partials/FormErrorMessage'
 import { SignUpSchema } from '../../assets/validation/schemas'
 import userUtils from '../../assets/userUtils'
 import { useUser, useDispatchUser } from '../../contexts/UserProvider/UserProvider'
 import Router from 'next/router'
-
-
-// import React from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
-// import FormControlLabel from '@material-ui/core/FormControlLabel'
-// import Checkbox from '@material-ui/core/Checkbox'
 import Link from 'next/link'
-// import Grid from '@material-ui/core/Grid'
-// import Box from '@material-ui/core/Box'
-// import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-// import { useUser, useDispatchUser } from '../../contexts/UserProvider/UserProvider'
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -57,14 +44,11 @@ const SignUpForm = () => {
   const dispatchUserData = useDispatchUser()
   const user = useUser()
 
-
   console.log(user)
-
 
   return (
     <Container component="main" maxWidth="xs" className='mb-10'>
       <div className={classes.paper}>
-
         <Avatar className={classes.avatar}>
           <i aria-hidden className="fas fa-user-plus"></i>
         </Avatar>
@@ -139,10 +123,6 @@ const SignUpForm = () => {
     </Container>
   )
 }
-
-
-
-
 
 
 export default SignUpForm

@@ -10,6 +10,8 @@ import '../assets/css/padding.css'
 import '../assets/css/margin.css'
 import '../node_modules/react-notifications/lib/notifications.css'
 import { UserProvider } from '../contexts/UserProvider/UserProvider'
+import GetUserData from '../components/utils/GetUserData'
+
 
 
 export default function MyApp(props) {
@@ -25,14 +27,16 @@ export default function MyApp(props) {
 
   return (
     <UserProvider>
-      <Head>
-        <title>My page</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-      </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <GetUserData>
+        <Head>
+          <title>My page</title>
+          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        </Head>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </GetUserData>
     </UserProvider>
   )
 }

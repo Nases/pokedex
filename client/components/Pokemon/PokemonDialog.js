@@ -1,6 +1,5 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import Dialog from '@material-ui/core/Dialog'
 import Typography from '@material-ui/core/Typography'
@@ -8,6 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import ProgressBar from './ProgressBar'
 import PokemonWeight from './PokemonWeight'
 import PokemonHeight from './PokemonHeight'
+import FavoritePokemon from './FavoritePokemon'
 
 const useStyles = makeStyles({
   title: {
@@ -19,6 +19,7 @@ export default function PokemonDialog({ onClose, open, metaData, characteristics
   const classes = useStyles()
 
   if (metaData) {
+    var id = metaData.id
     var img = metaData.sprites.other.dream_world.front_default
     var name = metaData.name.charAt(0).toUpperCase() + metaData.name.slice(1)
     var type1 = metaData.types[0].type.name
@@ -37,18 +38,17 @@ export default function PokemonDialog({ onClose, open, metaData, characteristics
         <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open}>
           <div className='my-6 px-10'>
             <img src={img} alt={name} height='250' className='block m-auto mb-4' />
-            <Typography gutterBottom variant="h5" component="h2" align='center' className='capitalize' className={classes.title}>
-              #{metaData.id}
+            <Typography variant="h5" component="h2" align='center' className='capitalize' className={`${classes.title} text-center`}>
+              #{id}
               {' '}
               {name}
+              <FavoritePokemon name={name} id={id} />
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p" align='center'>
               {description}
             </Typography>
             <div className='mt-3'>
-              <Grid container
-                justify="space-between"
-                alignItems="baseline">
+              <Grid container>
                 <Grid item xs={6}>
                   <PokemonWeight pokemonWeight={metaData.weight / 10} />
                 </Grid>
@@ -57,7 +57,6 @@ export default function PokemonDialog({ onClose, open, metaData, characteristics
                 </Grid>
               </Grid>
             </div>
-
           </div>
           <DialogContent className='mb-6'>
             <Grid container spacing={3}>
@@ -119,7 +118,6 @@ export default function PokemonDialog({ onClose, open, metaData, characteristics
                     )
                   })}
                 </ul>
-
               </div>
             </div>
           </DialogContent>

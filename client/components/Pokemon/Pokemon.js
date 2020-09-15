@@ -7,11 +7,9 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import { NotificationManager } from 'react-notifications'
-import Tooltip from '@material-ui/core/Tooltip'
 import PokemonWeight from './PokemonWeight'
 import PokemonHeight from './PokemonHeight'
+import FavoritePokemon from './FavoritePokemon'
 
 import PokemonDialog from './PokemonDialog'
 
@@ -20,9 +18,6 @@ const useStyles = makeStyles({
     height: 200,
     width: 200,
     margin: 'auto'
-  },
-  favIcon: {
-    marginLeft: 'auto'
   }
 })
 
@@ -32,7 +27,6 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
 
   const [metaData, setMetaData] = useState()
   const [characteristics, setCharacteristics] = useState()
-  const [isFav, setIsFav] = useState(false)
   const [dialogIsOpen, setDialogIsOpen] = useState(false)
 
   // capitalize name
@@ -45,14 +39,6 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
     setDialogIsOpen(false)
   }
 
-  const toggleIsFav = () => {
-    setIsFav(prevState => !prevState)
-    if (isFav) {
-      NotificationManager.info(`${name} removed from favorites.`, null, 3000)
-    } else {
-      NotificationManager.success(`${name} added to favorites.`, null, 3000)
-    }
-  }
 
   useEffect(() => {
     axios.get(url).then(value => {
@@ -79,7 +65,7 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
     <>
       {
         metaData ?
-          <Grid item xs={howManyInOneRow}>
+          <Grid item md={howManyInOneRow}>
             <Card className={classes.root}>
               <PokemonDialog open={dialogIsOpen} onClose={closeDialog} metaData={metaData} characteristics={characteristics} />
               <CardActionArea onClick={openDialog}>
@@ -99,13 +85,7 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
                 </Typography>
                 <PokemonWeight pokemonWeight={weight} />
                 <PokemonHeight pokemonHeight={height} />
-                <Tooltip title={isFav ? 'Remove from Favorites' : 'Add to Favorites'} placement="right">
-                  <IconButton className={classes.favIcon} onClick={toggleIsFav}>
-                    <Typography variant="h5" component="h2" align='right' className='text-red-600 ml-auto'>
-                      {isFav ? <i className="fas fa-heart" aria-hidden></i> : <i className="far fa-heart" aria-hidden></i>}
-                    </Typography>
-                  </IconButton>
-                </Tooltip>
+                <FavoritePokemon name={name} id={id} />
               </CardActions>
             </Card>
           </Grid>

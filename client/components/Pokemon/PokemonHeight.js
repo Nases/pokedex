@@ -26,7 +26,7 @@ const PokemonWeight = ({ pokemonHeight }) => {
 
 
   return (
-    <Tooltip title={heightCoverted ? 'Convert to m' : 'Convert to ft'} placement="right" className='cursor-pointer'>
+    <Tooltip title={heightCoverted ? 'Convert to m' : 'Convert to ft'} placement="right" className='cursor-pointer text-center'>
       <Typography onClick={convertHeight} className='pl-4 text-gray-700'>
         <i aria-hidden className="fas fa-ruler-vertical"></i>
         {' '}

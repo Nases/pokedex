@@ -44,7 +44,7 @@ export default function ButtonAppBar() {
           </Grid>
           <Grid item xs={4}>
             <Tooltip title={isAuth ? '' : 'Log In to see Pokémon List'} placement="bottom-start">
-              <div className={`${isAuth ? 'cursor-pointer' : 'cursor-not-allowed  opacity-75'} pt-2`}>
+              <div className={`${isAuth ? 'cursor-pointer' : 'cursor-not-allowed  opacity-75'} mobile-hidden pt-2`}>
                 <Link href={isAuth ? '/pokemons' : ''}>
                   <Typography variant="p">
                     <a>

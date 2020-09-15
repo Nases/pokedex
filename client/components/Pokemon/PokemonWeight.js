@@ -26,7 +26,7 @@ const PokemonWeight = ({ pokemonWeight }) => {
 
 
   return (
-    <Tooltip title={weightCoverted ? 'Convert to kg' : 'Convert to lb'} placement="right" className='cursor-pointer'>
+    <Tooltip title={weightCoverted ? 'Convert to kg' : 'Convert to lb'} placement="right" className='cursor-pointer text-center'>
       <Typography onClick={convertWeight} className='pl-4 text-gray-700'>
         <i aria-hidden className="fas fa-weight-hanging"></i>
         {' '}

@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
-import Link from 'next/link'
 import Layout from '../components/Layout/Layout'
 import LayoutIndent from '../components/Layout/LayoutIndent'
 import Grid from '@material-ui/core/Grid'
@@ -11,6 +9,7 @@ import { NotificationContainer } from 'react-notifications'
 import { makeStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
+import EnsureAuth from '../components/utils/EnsureAuth'
 
 
 const useStyles = makeStyles({
@@ -51,34 +50,36 @@ export default function Pokemons({ data }) {
 
 
   return (
-    <Layout title={title} description={description}>
-      <LayoutIndent>
-        <Box my={4}>
-          <Typography variant="h4" component="h1" align='center'>
-            Pokémon List
-          </Typography>
-          <div className='mt-4'>
-            <Tooltip title={howManyInOneRow == 4 ? 'Show 4 Pokémons in one row' : 'Show 3 Pokémons in one row'} placement="right">
-              <IconButton onClick={toggleHowManyInOneRow}>
-                <span className='cursor-pointer underline-on-hover font-bold'>
-                  {howManyInOneRow == 4 ? '|||' : '||||'}
-                </span>
-              </IconButton>
-            </Tooltip>
-          </div>
-          <hr />
+    <EnsureAuth>
+      <Layout title={title} description={description}>
+        <LayoutIndent>
           <Box my={4}>
-            <Grid container spacing={3}>
-              {data.map(value => {
-                return (
-                  <Pokemon name={value.name} url={value.url} howManyInOneRow={howManyInOneRow} key={value.name} />
-                )
-              })}
-            </Grid>
+            <Typography variant="h4" component="h1" align='center'>
+              Pokémon List
+          </Typography>
+            <div className='mt-4'>
+              <Tooltip title={howManyInOneRow == 4 ? 'Show 4 Pokémons in one row' : 'Show 3 Pokémons in one row'} placement="right">
+                <IconButton onClick={toggleHowManyInOneRow}>
+                  <span className='cursor-pointer underline-on-hover font-bold'>
+                    {howManyInOneRow == 4 ? '|||' : '||||'}
+                  </span>
+                </IconButton>
+              </Tooltip>
+            </div>
+            <hr />
+            <Box my={4}>
+              <Grid container spacing={3}>
+                {data.map(value => {
+                  return (
+                    <Pokemon name={value.name} url={value.url} howManyInOneRow={howManyInOneRow} key={value.name} />
+                  )
+                })}
+              </Grid>
+            </Box>
           </Box>
-        </Box>
-        <NotificationContainer />
-      </LayoutIndent>
-    </Layout>
+          <NotificationContainer />
+        </LayoutIndent>
+      </Layout>
+    </EnsureAuth>
   )
 }

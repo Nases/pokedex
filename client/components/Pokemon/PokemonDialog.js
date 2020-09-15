@@ -35,10 +35,10 @@ export default function PokemonDialog({ onClose, open, metaData, characteristics
   return (
     <>
       {metaData ?
-        <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open}>
+        <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open} fullWidth>
           <div className='my-6 px-10'>
             <img src={img} alt={name} height='250' className='block m-auto mb-4' />
-            <Typography variant="h5" component="h2" align='center' className='capitalize' className={`${classes.title} text-center`}>
+            <Typography variant="h5" component="h2" align='center' className='text-center'>
               #{id}
               {' '}
               {name}

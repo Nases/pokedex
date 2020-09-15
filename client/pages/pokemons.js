@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import Layout from '../components/Layout/Layout'
@@ -11,7 +11,8 @@ import Tooltip from '@material-ui/core/Tooltip'
 import EnsureAuth from '../components/utils/EnsureAuth'
 import axios from 'axios'
 import InfiniteScroll from "react-infinite-scroll-component"
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress'
+import SearchPokemon from '../components/Pokemon/SearchPokemon'
 
 
 export default function Pokemons() {
@@ -69,6 +70,7 @@ export default function Pokemons() {
             <Typography variant="h4" component="h1" align='center'>
               Pokémon List
             </Typography>
+            <SearchPokemon />
             <div className='mt-4'>
               <Tooltip title={howManyInOneRow == 4 ? 'Show 4 Pokémons in one row' : 'Show 3 Pokémons in one row'} placement="right">
                 <IconButton onClick={toggleHowManyInOneRow}>
@@ -85,7 +87,6 @@ export default function Pokemons() {
                 </IconButton>
               </Tooltip>
             </div>
-            <hr />
             <Box my={4}>
               <InfiniteScroll
                 dataLength={data.length}

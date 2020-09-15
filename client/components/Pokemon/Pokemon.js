@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import PokemonWeight from './PokemonWeight'
 import PokemonHeight from './PokemonHeight'
 import FavoritePokemon from './FavoritePokemon'
-
+import { useUser, useDispatchUser } from '../../contexts/UserProvider/UserProvider'
 import PokemonDialog from './PokemonDialog'
 
 const useStyles = makeStyles({
@@ -24,12 +24,12 @@ const useStyles = makeStyles({
 
 const Pokemon = ({ url, name, howManyInOneRow, favFilterOn }) => {
   const classes = useStyles()
+  const user = useUser()
 
   const [metaData, setMetaData] = useState()
   const [characteristics, setCharacteristics] = useState()
   const [dialogIsOpen, setDialogIsOpen] = useState(false)
-  const [isFavMain, setIsFavMain] = useState(false)
-
+  const [isFav, setIsFav] = useState(false)
 
   // capitalize name
   name = name.charAt(0).toUpperCase() + name.slice(1)
@@ -41,7 +41,6 @@ const Pokemon = ({ url, name, howManyInOneRow, favFilterOn }) => {
     setDialogIsOpen(false)
   }
 
-
   useEffect(() => {
     axios.get(url).then(value => {
       var data = value.data
@@ -50,7 +49,8 @@ const Pokemon = ({ url, name, howManyInOneRow, favFilterOn }) => {
         setCharacteristics(value.data)
       })
     })
-  }, [])
+    setIsFav(user.data.favoritePokemons.includes(id))
+  }, [isFav, favFilterOn])
 
   if (metaData) {
     var img = metaData.sprites.other.dream_world.front_default
@@ -66,7 +66,7 @@ const Pokemon = ({ url, name, howManyInOneRow, favFilterOn }) => {
   return (
     <>
       {
-        (metaData && (favFilterOn && isFavMain) || (!favFilterOn)) ?
+        (metaData && ((favFilterOn && isFav) || (!favFilterOn))) ?
           <Grid item md={howManyInOneRow}>
             <Card className={classes.root}>
               <PokemonDialog open={dialogIsOpen} onClose={closeDialog} metaData={metaData} characteristics={characteristics} />
@@ -87,7 +87,7 @@ const Pokemon = ({ url, name, howManyInOneRow, favFilterOn }) => {
                 </Typography>
                 <PokemonWeight pokemonWeight={weight} />
                 <PokemonHeight pokemonHeight={height} />
-                <FavoritePokemon name={name} id={id} setIsFavMain={setIsFavMain} />
+                <FavoritePokemon name={name} id={id} />
               </CardActions>
             </Card>
           </Grid>

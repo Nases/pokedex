@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   }
 })
 
-const FavoritePokemon = ({ id, name, setIsFavMain }) => {
+const FavoritePokemon = ({ id, name }) => {
   const classes = useStyles()
   const user = useUser()
   const userDispatch = useDispatchUser()
@@ -28,7 +28,6 @@ const FavoritePokemon = ({ id, name, setIsFavMain }) => {
 
   useEffect(() => {
     setIsFav(user.data.favoritePokemons.includes(id))
-    setIsFavMain(isFav)
   })
 
   const toggleIsFav = () => {

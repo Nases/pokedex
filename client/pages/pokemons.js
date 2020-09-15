@@ -10,6 +10,8 @@ import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
 import EnsureAuth from '../components/utils/EnsureAuth'
 import axios from 'axios'
+import InfiniteScroll from "react-infinite-scroll-component"
+
 
 export default function Pokemons() {
   var title = 'Pokémon List | Pokédex'
@@ -35,18 +37,20 @@ export default function Pokemons() {
     axios.get('https://pokeapi.co/api/v2/pokemon').then(value => {
       setData(value.data.results)
       setNextPokemonsURL(value.data.next)
-
     })
   }, [])
 
   const getNewPokemons = () => {
-    axios.get(nextPokemonsURL).then(value => {
-      setData(prevState => {
-        const newData = prevState.concat(value.data.results)
-        return newData
+    setTimeout(() => {
+      axios.get(nextPokemonsURL).then(value => {
+        setData(prevState => {
+          const newData = prevState.concat(value.data.results)
+          return newData
+        })
+        setNextPokemonsURL(value.data.next)
       })
-      setNextPokemonsURL(value.data.next)
-    })
+    }, 500)
+
   }
 
   return (
@@ -74,20 +78,27 @@ export default function Pokemons() {
               </Tooltip>
             </div>
             <hr />
-            <Box my={4}>
-              <Grid container spacing={3}>
-                {data.map(value => {
-                  return (
-                    <Pokemon name={value.name} url={value.url} howManyInOneRow={howManyInOneRow} key={value.name} favFilterOn={favFilterOn} />
-                  )
-                })}
-              </Grid>
-            </Box>
-            <div onClick={getNewPokemons}>Bottom on the page</div>
+            <InfiniteScroll
+              dataLength={data.length}
+              next={getNewPokemons}
+              hasMore={true}
+              loader={<h4><i aria-hidden className="fas fa-spinner fa-2x fa-spin"></i> Loading...</h4>}
+              scrollThreshold={1}
+            >
+              <Box my={4}>
+                <Grid container spacing={3}>
+                  {data.map(value => {
+                    return (
+                      <Pokemon name={value.name} url={value.url} howManyInOneRow={howManyInOneRow} key={value.name} favFilterOn={favFilterOn} />
+                    )
+                  })}
+                </Grid>
+              </Box>
+            </InfiniteScroll>
           </Box>
           <NotificationContainer />
         </LayoutIndent>
       </Layout>
-    </EnsureAuth>
+    </EnsureAuth >
   )
 }

@@ -12,6 +12,7 @@
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-infinite-scroll-component": "^5.1.0",
     "react-notifications": "^1.7.0",
     "yup": "^0.29.3"
   },

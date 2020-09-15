@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import Layout from '../components/Layout/Layout'
@@ -6,38 +6,24 @@ import LayoutIndent from '../components/Layout/LayoutIndent'
 import Grid from '@material-ui/core/Grid'
 import Pokemon from '../components/Pokemon/Pokemon'
 import { NotificationContainer } from 'react-notifications'
-import { makeStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
 import EnsureAuth from '../components/utils/EnsureAuth'
+import axios from 'axios'
 
-
-const useStyles = makeStyles({
-})
-
-export async function getStaticProps() {
-
-  const res = await fetch('https://pokeapi.co/api/v2/pokemon')
-  var data = await res.json()
-  data = data.results
-
-  return {
-    props: {
-      data
-    },
-    // re-build the app every hour if something is changed in the api
-    revalidate: 60 * 60,
-  }
-}
-
-export default function Pokemons({ data }) {
+export default function Pokemons() {
   var title = 'Pokémon List | Pokédex'
   var description = 'List of the Pokémons available'
 
-  const classes = useStyles()
-
+  const [data, setData] = useState([])
   const [howManyInOneRow, setHowManyInOneRow] = useState(4)
   const [favFilterOn, setfavFilterOn] = useState(false)
+
+  useEffect(() => {
+    axios.get('https://pokeapi.co/api/v2/pokemon').then(value => {
+      setData(value.data.results)
+    })
+  }, [])
 
   const toggleHowManyInOneRow = () => {
     setHowManyInOneRow(prevState => {

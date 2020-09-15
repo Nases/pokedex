@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
 import Tooltip from '@material-ui/core/Tooltip'
 import IconButton from '@material-ui/core/IconButton'
@@ -20,9 +20,16 @@ const useStyles = makeStyles({
 
 const FavoritePokemon = ({ id, name }) => {
   const classes = useStyles()
-  const [isFav, setIsFav] = useState(false)
   const user = useUser()
   const userDispatch = useDispatchUser()
+
+  const [isFav, setIsFav] = useState()
+
+  useEffect(() => {
+    setIsFav(user.data.favoritePokemons.includes(id))
+  })
+
+
 
   console.log(user)
 

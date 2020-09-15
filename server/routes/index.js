@@ -104,6 +104,39 @@ router.post('/signup', (req, res) => {
     })
 })
 
+
+
+
+
+router.post('/favorite-pokemon', (req, res) => {
+  if (req.isAuthenticated()) {
+    const { favoritePokemons } = req.body
+    User.updateOne({
+      email: req.user.email
+    }, {
+      favoritePokemons: favoritePokemons
+    }, (err, raw) => {
+      if (err) throw err
+      res.send('Pokemons changed successfully.')
+    })
+  } else {
+    res.status(401).send('Unauthenticated')
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 router.post('/change-password', (req, res) => {
   if (req.isAuthenticated()) {
     const { currentPassword, newPassword, confirmNewPassword } = req.body

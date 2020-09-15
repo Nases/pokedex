@@ -25,6 +25,14 @@ const userUtils = {
     })
     return p
   },
+  favoritePokemon: (favoritePokemons) => {
+    const p = axios.post(serverURI + 'favorite-pokemon', {
+      favoritePokemons: favoritePokemons
+    }, {
+      withCredentials: true
+    })
+    return p
+  },
   changePassword: (currentPassword, newPassword, confirmNewPassword) => {
     const p = axios.post(serverURI + 'change-password', {
       currentPassword: currentPassword,

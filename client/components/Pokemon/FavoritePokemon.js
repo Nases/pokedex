@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton'
 import { makeStyles } from '@material-ui/core/styles'
 import { NotificationManager } from 'react-notifications'
 import { useUser, useDispatchUser } from '../../contexts/UserProvider/UserProvider'
+import userUtils from '../../assets/userUtils'
 
 
 const useStyles = makeStyles({
@@ -29,9 +30,8 @@ const FavoritePokemon = ({ id, name }) => {
     setIsFav(user.data.favoritePokemons.includes(id))
   })
 
+  // console.log(user)
 
-
-  console.log(user)
 
   const toggleIsFav = () => {
     setIsFav(prevState => !prevState)
@@ -41,19 +41,45 @@ const FavoritePokemon = ({ id, name }) => {
         user.data.favoritePokemons.splice(index, 1)
         var newFavoritePokemons = user.data.favoritePokemons
       }
-      userDispatch({
-        type: 'UPDATE_FAVORITE_POKEMONS',
-        favoritePokemons: newFavoritePokemons
-      })
+
+      userUtils.favoritePokemon(newFavoritePokemons)
+        .then(response => {
+          userDispatch({
+            type: 'UPDATE_FAVORITE_POKEMONS',
+            favoritePokemons: newFavoritePokemons
+          })
+          console.log(response)
+          // setSubmitting(false)
+        })
+        .catch((error) => {
+          // console.log(error)
+          // setSubmitting(false)
+        })
+
+
+
       NotificationManager.info(`${name} removed from favorites.`, null, 3000)
     } else {
       NotificationManager.success(`${name} added to favorites.`, null, 3000)
       user.data.favoritePokemons.push(id)
       var newFavoritePokemons = user.data.favoritePokemons
-      userDispatch({
-        type: 'UPDATE_FAVORITE_POKEMONS',
-        favoritePokemons: newFavoritePokemons
-      })
+
+      userUtils.favoritePokemon(newFavoritePokemons)
+        .then(response => {
+          userDispatch({
+            type: 'UPDATE_FAVORITE_POKEMONS',
+            favoritePokemons: newFavoritePokemons
+          })
+          console.log(response)
+          // setSubmitting(false)
+        })
+        .catch((error) => {
+          // console.log(error)
+          // setSubmitting(false)
+        })
+
+
+
     }
   }
 

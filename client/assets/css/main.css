@@ -22,6 +22,10 @@
   cursor: pointer
 }
 
+.cursor-not-allowed {
+  cursor: not-allowed
+}
+
 .underline-on-hover:hover {
   text-decoration: underline
 }
@@ -42,7 +46,22 @@
   width: 100%;
 }
 
+.h-full {
+  height: 100%;
+}
+
 .text-left	{ text-align: left; }
 .text-center	{ text-align: center; }
 .text-right	{ text-align: right; }
 .text-justify	{ text-align: justify; }
+.align-baseline	{vertical-align: baseline;}
+.align-top	{vertical-align: top;}
+.align-middle	{vertical-align: middle;}
+.align-bottom	{vertical-align: bottom;}
+.align-text-top	{vertical-align: text-top;}
+.align-text-bottom	{vertical-align: text-bottom;}
+.opacity-0	{opacity: 0;}
+.opacity-25	{opacity: 0.25;}
+.opacity-50	{opacity: 0.5;}
+.opacity-75	{opacity: 0.75;}
+.opacity-100	{opacity: 1;}

@@ -6,6 +6,8 @@ import Link from 'next/link'
 import LayoutIndent from '../Layout/LayoutIndent'
 import Grid from '@material-ui/core/Grid'
 import { useUser, useDispatchUser } from '../../contexts/UserProvider/UserProvider'
+import Tooltip from '@material-ui/core/Tooltip'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,21 +30,37 @@ export default function ButtonAppBar() {
     <AppBar position="static" className={classes.appBar}>
       <LayoutIndent>
         <Grid container>
-          <Grid item xs={6}>
+          <Grid item xs={2}>
             <div className='cursor-pointer'>
               <Link href="/">
                 <Typography variant="h6">
                   <a>
                     Pokédex
-                    </a>
+                  </a>
                 </Typography>
               </Link>
             </div>
           </Grid>
+          <Grid item xs={4}>
+            <Tooltip title={isAuth ? '' : 'Log In to see Pokémon List'} placement="bottom-start">
+              <div className={`${isAuth ? 'cursor-pointer' : 'cursor-not-allowed  opacity-75'} pt-2`}>
+                <Link href={isAuth ? '/pokemons' : ''}>
+                  <Typography variant="p">
+                    <a>
+                      Pokémon List
+                  </a>
+                  </Typography>
+                </Link>
+              </div>
+            </Tooltip>
+          </Grid>
           <Grid item xs={6}>
             <Typography align='right'>
               {
-                isAuth ? user.data.email
+                isAuth ?
+                  <span>
+                    {user.data.email}
+                  </span>
                   :
                   <>
                     <Link href="/login">
@@ -53,7 +71,6 @@ export default function ButtonAppBar() {
                     </Link>
                   </>
               }
-
             </Typography>
           </Grid>
         </Grid>

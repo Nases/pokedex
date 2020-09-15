@@ -37,6 +37,7 @@ export default function Pokemons({ data }) {
   const classes = useStyles()
 
   const [howManyInOneRow, setHowManyInOneRow] = useState(4)
+  const [favFilterOn, setfavFilterOn] = useState(false)
 
   const toggleHowManyInOneRow = () => {
     setHowManyInOneRow(prevState => {
@@ -56,12 +57,19 @@ export default function Pokemons({ data }) {
           <Box my={4}>
             <Typography variant="h4" component="h1" align='center'>
               Pokémon List
-          </Typography>
+            </Typography>
             <div className='mt-4'>
               <Tooltip title={howManyInOneRow == 4 ? 'Show 4 Pokémons in one row' : 'Show 3 Pokémons in one row'} placement="right">
                 <IconButton onClick={toggleHowManyInOneRow}>
                   <span className='cursor-pointer underline-on-hover font-bold'>
                     {howManyInOneRow == 4 ? '|||' : '||||'}
+                  </span>
+                </IconButton>
+              </Tooltip>
+              <Tooltip title={favFilterOn ? 'Show all Pokémons' : 'Show only Favorite Pokémons'} placement="right">
+                <IconButton onClick={() => setfavFilterOn(prevState => !prevState)}>
+                  <span className='cursor-pointer underline-on-hover font-bold'>
+                    {favFilterOn ? <i className="fas fa-heart" aria-hidden></i> : <i className="far fa-heart" aria-hidden></i>}
                   </span>
                 </IconButton>
               </Tooltip>
@@ -71,7 +79,7 @@ export default function Pokemons({ data }) {
               <Grid container spacing={3}>
                 {data.map(value => {
                   return (
-                    <Pokemon name={value.name} url={value.url} howManyInOneRow={howManyInOneRow} key={value.name} />
+                    <Pokemon name={value.name} url={value.url} howManyInOneRow={howManyInOneRow} key={value.name} favFilterOn={favFilterOn} />
                   )
                 })}
               </Grid>

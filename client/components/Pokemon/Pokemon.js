@@ -22,12 +22,14 @@ const useStyles = makeStyles({
 })
 
 
-const Pokemon = ({ url, name, howManyInOneRow }) => {
+const Pokemon = ({ url, name, howManyInOneRow, favFilterOn }) => {
   const classes = useStyles()
 
   const [metaData, setMetaData] = useState()
   const [characteristics, setCharacteristics] = useState()
   const [dialogIsOpen, setDialogIsOpen] = useState(false)
+  const [isFavMain, setIsFavMain] = useState(false)
+
 
   // capitalize name
   name = name.charAt(0).toUpperCase() + name.slice(1)
@@ -64,7 +66,7 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
   return (
     <>
       {
-        metaData ?
+        (metaData && (favFilterOn && isFavMain) || (!favFilterOn)) ?
           <Grid item md={howManyInOneRow}>
             <Card className={classes.root}>
               <PokemonDialog open={dialogIsOpen} onClose={closeDialog} metaData={metaData} characteristics={characteristics} />
@@ -85,7 +87,7 @@ const Pokemon = ({ url, name, howManyInOneRow }) => {
                 </Typography>
                 <PokemonWeight pokemonWeight={weight} />
                 <PokemonHeight pokemonHeight={height} />
-                <FavoritePokemon name={name} id={id} />
+                <FavoritePokemon name={name} id={id} setIsFavMain={setIsFavMain} />
               </CardActions>
             </Card>
           </Grid>

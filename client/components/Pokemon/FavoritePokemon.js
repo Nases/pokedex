@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   }
 })
 
-const FavoritePokemon = ({ id, name }) => {
+const FavoritePokemon = ({ id, name, setIsFavMain }) => {
   const classes = useStyles()
   const user = useUser()
   const userDispatch = useDispatchUser()
@@ -28,10 +28,8 @@ const FavoritePokemon = ({ id, name }) => {
 
   useEffect(() => {
     setIsFav(user.data.favoritePokemons.includes(id))
+    setIsFavMain(isFav)
   })
-
-  // console.log(user)
-
 
   const toggleIsFav = () => {
     setIsFav(prevState => !prevState)
@@ -41,26 +39,21 @@ const FavoritePokemon = ({ id, name }) => {
         user.data.favoritePokemons.splice(index, 1)
         var newFavoritePokemons = user.data.favoritePokemons
       }
-
       userUtils.favoritePokemon(newFavoritePokemons)
         .then(response => {
           userDispatch({
             type: 'UPDATE_FAVORITE_POKEMONS',
             favoritePokemons: newFavoritePokemons
           })
-          console.log(response)
+          NotificationManager.info(`${name} removed from favorites.`, null, 3000)
+          // console.log(response)
           // setSubmitting(false)
         })
         .catch((error) => {
           // console.log(error)
           // setSubmitting(false)
         })
-
-
-
-      NotificationManager.info(`${name} removed from favorites.`, null, 3000)
     } else {
-      NotificationManager.success(`${name} added to favorites.`, null, 3000)
       user.data.favoritePokemons.push(id)
       var newFavoritePokemons = user.data.favoritePokemons
 
@@ -70,16 +63,14 @@ const FavoritePokemon = ({ id, name }) => {
             type: 'UPDATE_FAVORITE_POKEMONS',
             favoritePokemons: newFavoritePokemons
           })
-          console.log(response)
+          NotificationManager.success(`${name} added to favorites.`, null, 3000)
+          // console.log(response)
           // setSubmitting(false)
         })
         .catch((error) => {
           // console.log(error)
           // setSubmitting(false)
         })
-
-
-
     }
   }
 

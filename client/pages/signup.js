@@ -1,5 +1,4 @@
 import SignUpForm from '../components/forms/SignUpForm'
-import SignUpFormTest from '../components/forms/SignUpFormTest'
 import Layout from '../components/Layout/Layout'
 import LayoutIndent from '../components/Layout/LayoutIndent'
 
@@ -11,7 +10,6 @@ const SignUp = () => {
     <Layout title={title} description={description}>
       <LayoutIndent>
         <SignUpForm />
-        <SignUpFormTest />
       </LayoutIndent>
     </Layout>
   )

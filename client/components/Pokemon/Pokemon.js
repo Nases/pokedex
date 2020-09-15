@@ -47,6 +47,8 @@ const Pokemon = ({ url, name, howManyInOneRow, favFilterOn }) => {
       setMetaData(data)
       axios.get(`https://pokeapi.co/api/v2/characteristic/${data.id}/`).then(value => {
         setCharacteristics(value.data)
+      }).catch(err => {
+        setCharacteristics(null)
       })
     })
     setIsFav(user.data.favoritePokemons.includes(id))

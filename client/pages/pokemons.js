@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import Layout from '../components/Layout/Layout'
@@ -18,12 +18,8 @@ export default function Pokemons() {
   const [data, setData] = useState([])
   const [howManyInOneRow, setHowManyInOneRow] = useState(4)
   const [favFilterOn, setfavFilterOn] = useState(false)
+  const [nextPokemonsURL, setNextPokemonsURL] = useState()
 
-  useEffect(() => {
-    axios.get('https://pokeapi.co/api/v2/pokemon').then(value => {
-      setData(value.data.results)
-    })
-  }, [])
 
   const toggleHowManyInOneRow = () => {
     setHowManyInOneRow(prevState => {
@@ -35,6 +31,23 @@ export default function Pokemons() {
     })
   }
 
+  useEffect(() => {
+    axios.get('https://pokeapi.co/api/v2/pokemon').then(value => {
+      setData(value.data.results)
+      setNextPokemonsURL(value.data.next)
+
+    })
+  }, [])
+
+  const getNewPokemons = () => {
+    axios.get(nextPokemonsURL).then(value => {
+      setData(prevState => {
+        const newData = prevState.concat(value.data.results)
+        return newData
+      })
+      setNextPokemonsURL(value.data.next)
+    })
+  }
 
   return (
     <EnsureAuth>
@@ -70,6 +83,7 @@ export default function Pokemons() {
                 })}
               </Grid>
             </Box>
+            <div onClick={getNewPokemons}>Bottom on the page</div>
           </Box>
           <NotificationContainer />
         </LayoutIndent>

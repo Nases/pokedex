@@ -8,7 +8,8 @@ const bodyParser = require('body-parser')
 const app = express()
 
 // allow cors with credentials and explicit uri
-app.use(cors({ credentials: true, origin: ['http://localhost:3000', 'https://pokedex.hasansefaozalp.com'] }))
+// app.use(cors({ credentials: true, origin: ['http://localhost:3000', 'https://pokedex.hasansefaozalp.com'] }))
+app.use(cors({ credentials: true, origin: ['http://localhost:3000', 'https://pokedex.hasansefaozalp.com', 'http://fstc.io', 'https://fstc.io'] }))
 
 // Passport config
 require('./config/passport')(passport)
@@ -31,8 +32,7 @@ app.use(
   session({
     secret: 'secret',
     resave: true,
-    saveUninitialized: true,
-    sameSite: false
+    saveUninitialized: true
     // cookie: { secure: true }
   })
 )

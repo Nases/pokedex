@@ -2,7 +2,8 @@ import axios from 'axios'
 
 
 
-const serverURI = (process.env.NODE_ENV === 'production') ? 'https://fstc.io/' : 'http://localhost:5000/'
+// const serverURI = (process.env.NODE_ENV === 'production') ? 'https://fstc.io/' : 'http://localhost:5000/'
+const serverURI = (process.env.NODE_ENV === 'production') ? 'http://localhost:5000/' : 'http://localhost:5000/'
 console.log(serverURI)
 
 const userUtils = {

@@ -97,7 +97,7 @@ export default function Pokemons() {
                     dataLength={data.length}
                     next={getNewPokemons}
                     hasMore={true}
-                    loader={<LoadingMore />}
+                    loader={!favFilterOn ? <LoadingMore /> : ''}
                     scrollThreshold={1}
                     style={{ overflow: 'visible' }}
                   >

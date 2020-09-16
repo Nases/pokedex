@@ -8,7 +8,7 @@ Development environment:
 Setting up your development environment on your local machine:
 ```bash
 git clone https://github.com/Nases/pokedex
-cd leaguestats/client
+cd pokedex/client
 npm install
 cd ../server
 npm install

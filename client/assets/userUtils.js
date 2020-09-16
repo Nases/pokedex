@@ -3,6 +3,7 @@ import axios from 'axios'
 
 
 const serverURI = (process.env.NODE_ENV === 'production') ? 'http://159.89.135.165:5000/' : 'http://localhost:5000/'
+console.log(serverURI)
 
 const userUtils = {
   login: (email, password) => {

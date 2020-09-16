@@ -15,7 +15,7 @@ import Container from '@material-ui/core/Container'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    paddingTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
@@ -52,7 +52,7 @@ const SignUpForm = () => {
         <Avatar className={classes.avatar}>
           <i aria-hidden className="fas fa-user-plus"></i>
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" className='text-blue-700'>
           Sign up
         </Typography>
         <Formik

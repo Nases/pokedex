@@ -34,10 +34,10 @@ const WelcomeScreen = () => {
           {
             user.isAuth ?
               <>
-                <Typography variant="h4" component="h1" gutterBottom className='text-white'>
+                <Typography variant="h4" component="h1" gutterBottom>
                   Welcome back {email}!
                 </Typography>
-                <Typography variant="h5" component="h1" gutterBottom className='text-white'>
+                <Typography variant="h5" component="h1" gutterBottom>
                   Would you like to check out the Pokémon List?
                 </Typography>
                 <div className='mt-8'>
@@ -48,11 +48,11 @@ const WelcomeScreen = () => {
               </>
               :
               <>
-                <Typography variant="h4" component="h1" gutterBottom className='text-white'>
+                <Typography variant="h4" component="h1" gutterBottom>
                   Welcome to Pokédex!
                 </Typography>
-                <Typography variant="h5" component="h1" gutterBottom className='text-white'>
-                  Let's get started!
+                <Typography variant="h5" component="h1" gutterBottom>
+                  Let's get started.
                 </Typography>
                 <div className='mt-8'>
                   <span className='mr-4'>

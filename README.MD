@@ -6,7 +6,7 @@ Development environment:
 - [MongoDB](https://www.mongodb.com/download-center/community)
 
 Setting up your development environment on your local machine:
-```bash
+```
 git clone https://github.com/Nases/pokedex
 cd pokedex/client
 npm install

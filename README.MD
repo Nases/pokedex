@@ -16,3 +16,4 @@ cd ..
 npm install -g concurrently
 npm run dev
 ```
+Go to http://localhost:3000/

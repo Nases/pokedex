@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 const app = express()
 
 // allow cors with credentials and explicit uri
-app.use(cors({ credentials: true, origin: ['http://localhost:3000', 'https://pokedex.hasansefaozalp.com/'] }))
+app.use(cors({ credentials: true, origin: ['http://localhost:3000', 'https://pokedex.hasansefaozalp.com'] }))
 
 // Passport config
 require('./config/passport')(passport)

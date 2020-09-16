@@ -24,9 +24,8 @@ export default function Pokemons() {
   const [howManyInOneRow, setHowManyInOneRow] = useState(4)
   const [favFilterOn, setfavFilterOn] = useState(false)
   const [nextPokemonsURL, setNextPokemonsURL] = useState()
-
   const [searchedPokemonName, setSearchedPokemonName] = useState()
-  console.log(searchedPokemonName)
+
 
   const toggleHowManyInOneRow = () => {
     setHowManyInOneRow(prevState => {
@@ -91,23 +90,26 @@ export default function Pokemons() {
               </Tooltip>
             </div>
             <Box my={4}>
-              <ShowSearchedPokemon name={searchedPokemonName} />
-              <InfiniteScroll
-                dataLength={data.length}
-                next={getNewPokemons}
-                hasMore={true}
-                loader={<LoadingMore />}
-                scrollThreshold={1}
-                style={{ overflow: 'visible' }}
-              >
-                <Grid container spacing={3}>
-                  {data.map(value => {
-                    return (
-                      <Pokemon name={value.name} url={value.url} howManyInOneRow={howManyInOneRow} key={value.name} favFilterOn={favFilterOn} />
-                    )
-                  })}
-                </Grid>
-              </InfiniteScroll>
+              {
+                searchedPokemonName
+                  ? <ShowSearchedPokemon name={searchedPokemonName} />
+                  : <InfiniteScroll
+                    dataLength={data.length}
+                    next={getNewPokemons}
+                    hasMore={true}
+                    loader={<LoadingMore />}
+                    scrollThreshold={1}
+                    style={{ overflow: 'visible' }}
+                  >
+                    <Grid container spacing={3}>
+                      {data.map(value => {
+                        return (
+                          <Pokemon name={value.name} url={value.url} howManyInOneRow={howManyInOneRow} key={value.name} favFilterOn={favFilterOn} />
+                        )
+                      })}
+                    </Grid>
+                  </InfiniteScroll>
+              }
             </Box>
           </Box>
           <NotificationContainer />

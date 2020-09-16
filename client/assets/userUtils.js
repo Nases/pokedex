@@ -1,8 +1,6 @@
 import axios from 'axios'
-// import companyInfo from './company-info'
 
 
-// const serverURI = companyInfo.serverURI
 const serverURI = 'http://localhost:5000/'
 
 const userUtils = {
@@ -50,4 +48,3 @@ const userUtils = {
 
 
 export default userUtils
-

@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const passport = require('passport')
 const bodyParser = require('body-parser')
-const path = require('path')
 const app = express()
 
 // allow cors with credentials and explicit uri
@@ -14,7 +13,8 @@ app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
 // Passport config
 require('./config/passport')(passport)
 
-mongoose.connect(process.env.MONGODB_URI, {
+// must be changed to env variable in real app
+mongoose.connect('mongodb+srv://nases2:DtpEkmjqcWvV3DQ1@nases-group-llc-bophr.azure.mongodb.net/auth-boilerplate?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })

@@ -13,6 +13,7 @@ import axios from 'axios'
 import InfiniteScroll from "react-infinite-scroll-component"
 import CircularProgress from '@material-ui/core/CircularProgress'
 import SearchPokemon from '../components/Pokemon/SearchPokemon'
+import ShowSearchedPokemon from '../components/Pokemon/ShowSearchedPokemon'
 
 
 export default function Pokemons() {
@@ -24,6 +25,8 @@ export default function Pokemons() {
   const [favFilterOn, setfavFilterOn] = useState(false)
   const [nextPokemonsURL, setNextPokemonsURL] = useState()
 
+  const [searchedPokemonName, setSearchedPokemonName] = useState()
+  console.log(searchedPokemonName)
 
   const toggleHowManyInOneRow = () => {
     setHowManyInOneRow(prevState => {
@@ -70,7 +73,7 @@ export default function Pokemons() {
             <Typography variant="h4" component="h1" align='center'>
               Pokémon List
             </Typography>
-            <SearchPokemon />
+            <SearchPokemon setSearchedPokemonName={setSearchedPokemonName} />
             <div className='mt-4'>
               <Tooltip title={howManyInOneRow == 4 ? 'Show 4 Pokémons in one row' : 'Show 3 Pokémons in one row'} placement="right">
                 <IconButton onClick={toggleHowManyInOneRow}>
@@ -88,6 +91,7 @@ export default function Pokemons() {
               </Tooltip>
             </div>
             <Box my={4}>
+              <ShowSearchedPokemon name={searchedPokemonName} />
               <InfiniteScroll
                 dataLength={data.length}
                 next={getNewPokemons}
